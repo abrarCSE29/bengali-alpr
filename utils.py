@@ -50,4 +50,4 @@ def detect_and_extract_lp_text(path, show_cropped_image = True):
         show_image(cropped_img)
         
     lp_text = extract_license_text(cv2.cvtColor(cropped_img, cv2.COLOR_BGR2GRAY))
-    print(lp_text)
+    return lp_text
