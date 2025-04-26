@@ -4,7 +4,7 @@ import difflib
 import matplotlib.pyplot as plt
 
 
-f = open('areas.txt', 'r')
+f = open('areas.txt', 'r',encoding='utf-8')
 words = f.read().splitlines()
 
 vclass = [
@@ -58,4 +58,4 @@ def extract_license_text(path, reader = reader):
     if number.find("-") == -1 and len(number) == 6:
         number = number[:2] + "-" + number[2:]
     
-    return area.strip(), number.strip()
+    return area.strip()+" "+number.strip()
