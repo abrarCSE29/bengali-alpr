@@ -4,7 +4,7 @@ import difflib
 import matplotlib.pyplot as plt
 
 
-f = open('areas.txt', 'r')
+f = open('areas.txt', 'r',encoding='utf-8')
 words = f.read().splitlines()
 
 vclass = [
