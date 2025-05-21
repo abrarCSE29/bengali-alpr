@@ -1,4 +1,3 @@
-models/
 __pycache__
 .ipynb_checkpoints
 bin
@@ -7,3 +6,4 @@ lib
 lib64
 pyvenv.cfg
 detection
+models
