@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 import utils
 from werkzeug.utils import secure_filename
 import os
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Configure upload folder and allowed extensions
 UPLOAD_FOLDER = 'uploads'
@@ -15,6 +17,10 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+@app.route('/', methods=['GET'])
+def get_status():
+    return jsonify({'message': 'Okay'}), 200
 
 @app.route('/detect_license_plate', methods=['POST'])
 def detect_license_plate():
