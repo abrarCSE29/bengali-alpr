@@ -2,10 +2,17 @@ from flask import Flask, request, jsonify, send_file, url_for
 import utils
 from werkzeug.utils import secure_filename
 import os
+
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)
+
 import cv2
 import socket
 
 app = Flask(__name__, static_url_path='/static')
+
 
 # Configure upload folder and allowed extensions
 UPLOAD_FOLDER = 'uploads'
@@ -21,11 +28,17 @@ os.makedirs(DETECTION_FOLDER, exist_ok=True)
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
+@app.route('/', methods=['GET'])
+def get_status():
+    return jsonify({'message': 'Okay'}), 200
+
 # Function to get server's IP address
 def get_server_ip():
     hostname = socket.gethostname()
     ip_address = socket.gethostbyname(hostname)
     return ip_address
+
 
 @app.route('/detect_license_plate', methods=['POST'])
 def detect_license_plate():
